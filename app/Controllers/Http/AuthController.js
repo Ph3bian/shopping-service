@@ -10,7 +10,6 @@ class AuthController {
       const { token } = user
 
       if (!user) {
-        console.log(user)
         throw new Error()
       }
       const userDetails = await User.findByOrFail('email', email)
@@ -22,7 +21,6 @@ class AuthController {
         profile: userDetails
       }
     } catch (error) {
-      console.log(error)
       return response.unauthorized({
         success: false,
         message: 'Invalid credentails'
@@ -49,9 +47,10 @@ class AuthController {
     }
   }
   //  Register new user
-  async register({ request, response }) {
+  async register({ auth, request, response }) {
     try {
       const userData = request.all()
+
       const rules = {
         username: 'required|unique:users',
         email: 'required|email|unique:users',
@@ -69,16 +68,18 @@ class AuthController {
         { username: userData.username },
         userData
       )
-
+      const {token} = await auth.generate(user)
       return {
         success: true,
         message: 'Welcome on board',
-        user
+        user,
+        token
       }
     } catch (error) {
       return response.unauthorized({
         success: false,
-        message: 'Oops an error occured'
+        message: 'Oops an error occured',
+        error
       })
     }
   }

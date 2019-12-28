@@ -6,7 +6,7 @@ class ProductController {
    * GET products
    */
   async index({ response }) {
-    const products = await Users.query()
+    const products = await Product.query()
       .with('products')
       .fetch()
     return response.ok({ data: products, success: true })
@@ -16,13 +16,18 @@ class ProductController {
    * Delete a Product with id.
    * DELETE products/:id
    */
-  async delete({ params, response }) {
-    const product = await Product.findOrFail(params.id)
 
-    await product.delete()
-    return response
-      .status(200)
-      .send({ success: true, message: 'Product deleted successfully' })
+  async delete({ params, response }) {
+    try {
+      const product = await Product.findOrFail(params.id)
+      await product.delete()
+      return { success: true, message: 'Product deleted successfully' }
+    } catch (e) {
+      return response.badRequest({
+        success: false,
+        message: 'Error, delete product failed'
+      })
+    }
   }
 }
 

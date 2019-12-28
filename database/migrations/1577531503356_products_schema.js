@@ -11,9 +11,8 @@ class ProductsSchema extends Schema {
       table.string('name', 255).notNullable()
       table.string('category', 80)
       table.string('description', 255)
-      table.decimal('price').notNullable();
+      table.decimal('price').notNullable()
       table.string('created_by', 255)
-
     })
   }
 

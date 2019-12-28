@@ -2,7 +2,11 @@
 const { validate } = use('Validator')
 const User = use('App/Models/User')
 class AuthController {
-  //   Handle user login
+  /**
+   *  Handle user login.
+   * POST /auth/login
+   */
+
   async login({ auth, request, response }) {
     try {
       const { email, password } = request.all()
@@ -17,8 +21,8 @@ class AuthController {
       return {
         success: true,
         message: 'Logged in successfully',
-        token,
-        profile: userDetails
+        profile: userDetails,
+        token
       }
     } catch (error) {
       return response.unauthorized({
@@ -27,7 +31,11 @@ class AuthController {
       })
     }
   }
-  //   Handle forgot password
+  /**
+   *  Handle forgot password.
+   * POST /reset-password
+   */
+
   async resetPassword({ auth, request, response }) {
     try {
       const { email } = request.all()
@@ -46,7 +54,11 @@ class AuthController {
       })
     }
   }
-  //  Register new user
+  /**
+   *  Register new user.
+   * POST /auth/register
+   */
+
   async register({ auth, request, response }) {
     try {
       const userData = request.all()
@@ -68,11 +80,11 @@ class AuthController {
         { username: userData.username },
         userData
       )
-      const {token} = await auth.generate(user)
+      const { token } = await auth.generate(user)
       return {
         success: true,
         message: 'Welcome on board',
-        user,
+        profile: user,
         token
       }
     } catch (error) {

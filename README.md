@@ -1,28 +1,51 @@
-# Adonis API application
+# Shopping Service
 
-This is the boilerplate for creating an API server in AdonisJs, it comes pre-configured with.
+api service for an e-commerce platform, that allows user purchase products and perform many more actions
 
-1. Bodyparser
-2. Authentication
-3. CORS
-4. Lucid ORM
-5. Migrations and seeds
 
-## Setup
+## Endpoints
 
-Use the adonis command to install the blueprint
+- POST /auth​/register (register new user)
 
-```bash
-adonis new yardstick --api-only
-```
+- POST /auth​/login (user log in)
 
-or manually clone the repo and then run `npm install`.
+- GET /products (fetch all products)
+
+## Project Description (User Stories)
+
+- User should be able to create an account
+
+- User should be able to login if he already has an account
+
+- User should be able to view all products
+
+- User should be able to view add products to cart
+
+- User should be able to view all products in cart
+
+- User should be able to checkout and make payment for products in cart
+
+- Admin should be able to create new product
+
+- Admin should be able to update product available
+
+- Admin should be able to delete product
+
+
+
+
+## Technologies Used
+
+Built on the AdonisJs, AdonisJs is a Node.js web framework.
 
 
 ### Migrations
 
 Run the following command to run startup migrations.
 
-```js
-adonis migration:run
-```
+- Run migrations using command `node ace migration:run --force`
+
+
+- Run seeders using command `node ace seed`
+
+For more information visit [AdonisJs](https://adonisjs.com/)

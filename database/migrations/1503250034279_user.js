@@ -19,8 +19,7 @@ class UserSchema extends Schema {
       table.string('first_name', 60).notNullable()
       table.string('last_name', 60).notNullable()
       table.string('gender', 60)
-      table.string('age', 60)
-      table.string('dob', 60)
+      table.timestamp('dob', 60)
       table
         .string('user_type', 60)
         .notNullable()

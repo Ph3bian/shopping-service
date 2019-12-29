@@ -17,7 +17,7 @@ class ProductController {
    * DELETE products/:id
    */
 
-  async delete({ params, response }) {
+  async destroy({ params, response }) {
     try {
       const product = await Product.findOrFail(params.id)
       await product.delete()

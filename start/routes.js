@@ -21,6 +21,7 @@ const UserValidator = Route.get('/', () => {
 Route.post('auth/login', 'AuthController.login')
 Route.post('auth/register', 'AuthController.register')
 Route.post('auth/reset-password', 'AuthController.resetPassword')
-Route.get('users', 'UserController.index')
-Route.get('products', 'ProductController.index')
-Route.delete('delete-products', 'ProductController.delete')
+Route.get('products', 'ProductController.index').middleware(['auth', 'admin'])
+Route.get('delete-product', 'ProductController.destroy').middleware(['auth', 'admin'])
+Route.get('users', 'UserController.index').middleware(['auth', 'superAdmin'])
+

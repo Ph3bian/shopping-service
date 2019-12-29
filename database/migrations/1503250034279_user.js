@@ -21,7 +21,7 @@ class UserSchema extends Schema {
       table.string('gender', 60)
       table.timestamp('dob', 60)
       table
-        .string('user_type', 60)
+        .enum('user_type', ['user', 'admin', 'superAdmin'])
         .notNullable()
         .defaultTo('user')
       table.timestamps()

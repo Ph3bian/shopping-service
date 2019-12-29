@@ -81,12 +81,12 @@ class AuthController {
         userData
       )
       const { token } = await auth.generate(user)
-      return {
+      return response.created({
         success: true,
         message: 'Welcome on board',
         profile: user,
         token
-      }
+      })
     } catch (error) {
       return response.unauthorized({
         success: false,

@@ -12,10 +12,10 @@ class Superadmin {
   async handle({ auth, response }, next) {
     try {
       const { user_type } = await auth.getUser()
-   
+
       if (['superAdmin'].includes(user_type)) {
         // call next to advance the request
-       return await next()
+        return await next()
       }
 
       throw new Error()

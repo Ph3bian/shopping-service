@@ -45,7 +45,10 @@ class ProductController {
     try {
       const product = await Product.findOrFail(params.id)
       await product.delete()
-      return { success: true, message: 'Product deleted successfully' }
+      return response.ok({
+        success: true,
+        message: 'Product deleted successfully'
+      })
     } catch (e) {
       return response.badRequest({
         success: false,
